@@ -31,7 +31,8 @@ file_env() {
 file_env "SONARQUBE_JDBC_PASSWORD"
 file_env "LDAP_PASSWORD"
 
-exec java -jar lib/sonar-application-$SONAR_VERSION.jar \
+exec gosu sonarqube \
+   java -jar lib/sonar-application-$SONAR_VERSION.jar \
   -Dsonar.log.console=true \
   -Dsonar.jdbc.username="$SONARQUBE_JDBC_USERNAME" \
   -Dsonar.jdbc.password="$SONARQUBE_JDBC_PASSWORD" \
