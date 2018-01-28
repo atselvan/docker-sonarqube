@@ -40,4 +40,8 @@ COPY sonar.properties $SONARQUBE_HOME/conf
 
 EXPOSE 22
 
-ENTRYPOINT ["./bin/run.sh"]
+# Add Tini
+ENV TINI_VERSION v0.16.1
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--", "-g", "-v", "./bin/run.sh"]  
