@@ -7,7 +7,7 @@ LABEL description="Docker container for Sonarqube"
 
 ADD VERSION .
 
-ENV SONAR_VERSION='cat VERSION' \
+ENV SONAR_VERSION='5.6.6' \
     SONARQUBE_HOME=/appl/sonarqube \
     # Database configuration
     SONARQUBE_JDBC_USERNAME=sonarqube \
