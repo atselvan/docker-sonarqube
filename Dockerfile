@@ -8,10 +8,8 @@ LABEL description="Docker container for Sonarqube"
 ADD VERSION .
 
 ENV SONAR_VERSION='5.6.6' \
-    SONARQUBE_HOME=/appl/sonarqube \
-    # Database configuration
-    SONARQUBE_JDBC_USERNAME=sonarqube \
-    SONARQUBE_JDBC_URL=jdbc:mysql://mysql:3306/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
+    SONARQUBE_HOME='/appl/sonarqube' \
+    SONARQUBE_JDBC_USERNAME='sonarqube'
 
 # Http port
 EXPOSE 9000

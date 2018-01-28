@@ -8,6 +8,9 @@ IMAGE="$USERNAME/$NAME:${VERSION}"
 VOLUME="source=/data/$NAME,target=/appl/sonarqube/data"
 NETWORK="privatesquare"
 PORT="9000:9000"
+SONARQUBE_JDBC_URL="jdbc:mysql://cicd.privatesquare.in:3306/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance"
+LDAP_URL='ldap://cicd.privatesquare.in:10389'
+LDAP_BIND_DN="cn=root,dc=privatesquare,dc=in"
 
 EXISTING=`docker service ls | grep -c $NAME`
 if [ $EXISTING -gt 0 ]
@@ -32,5 +35,10 @@ docker service create \
     --constraint=node.role==manager \
     --mount=type=bind,$VOLUME\
     --secret source=mysql_password,target=mysql_password \
+    --secret source=ldap_password,target=ldap_password \
+    -e SONARQUBE_JDBC_URL=$SONARQUBE_JDBC_URL \
     -e SONARQUBE_JDBC_PASSWORD_FILE="/run/secrets/mysql_password" \
+    -e LDAP_URL=$LDAP_URL \
+    -e LDAP_BIND_DN=$LDAP_BIND_DN \
+    -e LDAP_PASSWORD_FILE="/run/secrets/ldap_password" \
     $IMAGE

@@ -29,11 +29,15 @@ file_env() {
 }
 
 file_env "SONARQUBE_JDBC_PASSWORD"
+file_env "LDAP_PASSWORD"
 
 exec java -jar lib/sonar-application-$SONAR_VERSION.jar \
   -Dsonar.log.console=true \
   -Dsonar.jdbc.username="$SONARQUBE_JDBC_USERNAME" \
   -Dsonar.jdbc.password="$SONARQUBE_JDBC_PASSWORD" \
   -Dsonar.jdbc.url="$SONARQUBE_JDBC_URL" \
+  -Dldap.url="$LDAP_URL" \
+  -Dldap.bindDn="$LDAP_BIND_DN" \
+  -Dldap.bindPassword="$LDAP_PASSWORD" \
   -Dsonar.web.javaAdditionalOpts="$SONARQUBE_WEB_JVM_OPTS -Djava.security.egd=file:/dev/./urandom" \
   "$@"
