@@ -1,6 +1,5 @@
 FROM openjdk:8 
 
-MAINTAINER Allan Selvan <allantony2008@gmail.com>
 LABEL authors="Allan Selvan <allantony2008@gmail.com>"
 LABEL version="6.7.1"
 LABEL description="Docker container for Sonarqube"
