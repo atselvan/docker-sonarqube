@@ -9,7 +9,7 @@ VOLUME="source=/Users/allanselvan/data/$NAME,target=/appl/sonarqube/data"
 NETWORK="privatesquare"
 PORT="9000:9000"
 SONARQUBE_JDBC_URL="jdbc:mysql://192.168.178.2:3306/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance"
-LDAP_URL='ldap://192.168.178.23:10389'
+LDAP_URL='ldap://192.168.178.2:10389'
 LDAP_BIND_DN="cn=root,dc=privatesquare,dc=in"
 
 EXISTING=`docker service ls | grep -c $NAME`
